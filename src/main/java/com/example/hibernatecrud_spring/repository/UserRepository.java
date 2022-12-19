@@ -4,5 +4,6 @@ import com.example.hibernatecrud_spring.model.User;
 import org.springframework.stereotype.Component;
 
 
-public interface UserRepository extends GenericRepository<User,Long> {
+public interface UserRepository extends GenericRepository<User,Integer> {
+    User findByUserName(String userName);
 }

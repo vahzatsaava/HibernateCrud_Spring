@@ -2,6 +2,7 @@ package com.example.hibernatecrud_spring.utils;
 
 import com.example.hibernatecrud_spring.model.Event;
 import com.example.hibernatecrud_spring.model.File;
+import com.example.hibernatecrud_spring.model.Role;
 import com.example.hibernatecrud_spring.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
@@ -24,6 +25,7 @@ public class HibernateUtils {
                     configuration.addAnnotatedClass(User.class);
                     configuration.addAnnotatedClass(Event.class);
                     configuration.addAnnotatedClass(File.class);
+                    configuration.addAnnotatedClass(Role.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 factory = configuration.buildSessionFactory(builder.build());
             } catch (Exception e) {

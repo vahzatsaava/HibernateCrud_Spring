@@ -1,12 +1,9 @@
 package com.example.hibernatecrud_spring.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 import javax.persistence.*;
-import javax.transaction.Transactional;
 
 @NoArgsConstructor
 @Data
@@ -21,24 +18,23 @@ public class File {
     private String fileName;
     @Column(name = "location")
     private String location;
-    @Column(name = "role")
+    @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Status status;
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "file")
     @ToString.Exclude
     private Event event;
 
-    public File(int id, String fileName, String location, Role role) {
+    public File(int id, String fileName, String location, Status status) {
         this.id = id;
         this.fileName = fileName;
         this.location = location;
-        this.role = role;
-
+        this.status = status;
     }
 
-    public File(String fileName, String location, Role role) {
+    public File(String fileName, String location, Status status) {
         this.fileName = fileName;
         this.location = location;
-        this.role = role;
+        this.status = status;
     }
 }
