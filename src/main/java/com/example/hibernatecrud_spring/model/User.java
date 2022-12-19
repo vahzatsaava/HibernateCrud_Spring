@@ -29,9 +29,13 @@ public class User {
     private String last_name;
     @Column(name = "password")
     private String password;
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private Status status;
+    /*
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SELECT)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -41,6 +45,8 @@ public class User {
     @ToString.Exclude
     @JsonIgnore
     private List<Role> roles;
+
+     */
 
     @ToString.Exclude
     @JsonIgnore

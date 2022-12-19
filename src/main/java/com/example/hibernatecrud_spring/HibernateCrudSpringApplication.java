@@ -11,9 +11,12 @@ public class HibernateCrudSpringApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(HibernateCrudSpringApplication.class, args);
+        /*
         HibernateUserRepositoryImpl userRepository = new HibernateUserRepositoryImpl();
         HibernateFileRepositoryImpl fileRepository = new HibernateFileRepositoryImpl();
         HibernateEventRepositoryImpl hibernateEventRepository = new HibernateEventRepositoryImpl();
+
+         */
     }
 
 }

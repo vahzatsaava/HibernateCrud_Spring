@@ -1,47 +1,27 @@
 package com.example.hibernatecrud_spring.service;
 
-import com.example.hibernatecrud_spring.model.Role;
-import com.example.hibernatecrud_spring.model.Status;
 import com.example.hibernatecrud_spring.model.User;
-import com.example.hibernatecrud_spring.repository.RoleRepository;
 import com.example.hibernatecrud_spring.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Slf4j
 public class UserService {
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
-    private final PasswordEncoder passwordEncoder;
-
 
     @Autowired
-    public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
+
     }
 
 
     public User save(User user) {
-        Role roleUser = roleRepository.findByName("ROLE_USER");
-        List<Role> userRoles = new ArrayList<>();
-        userRoles.add(roleUser);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(userRoles);
-        user.setStatus(Status.ACTIVE);
-
-        User registeredUser = userRepository.add(user);
-        log.info("In method register - user {} successfully registered", registeredUser);
-        return registeredUser;
+        return userRepository.add(user);
     }
 
     public User update(User user) {
@@ -66,7 +46,6 @@ public class UserService {
     }
 
     public void deleteUser(Integer id) {
-
         userRepository.delete(id);
         log.info("in delete user with id {} successfully deleted",id);
     }
