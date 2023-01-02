@@ -7,10 +7,10 @@ public interface GenericRepository<T, Id> {
 
     T update(T t);
 
-    T find(Integer id);
+    T find(Long id);
 
     List<T> getAll();
 
-    void delete(Integer id);
+    void delete(Long id);
 
 }

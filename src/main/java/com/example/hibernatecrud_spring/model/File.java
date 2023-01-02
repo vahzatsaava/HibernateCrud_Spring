@@ -9,12 +9,11 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "files")
-
 public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "fileName")
+    private Long id;
+    @Column(name = "file_name")
     private String fileName;
     @Column(name = "location")
     private String location;
@@ -25,7 +24,7 @@ public class File {
     @ToString.Exclude
     private Event event;
 
-    public File(int id, String fileName, String location, Status status) {
+    public File(Long id, String fileName, String location, Status status) {
         this.id = id;
         this.fileName = fileName;
         this.location = location;

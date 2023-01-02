@@ -16,7 +16,7 @@ public class FileService {
         this.fileRepository = fileRepository;
     }
 
-    public File getOneFile(Integer id) {
+    public File getOneFile(Long id) {
         return fileRepository.find(id);
     }
 
@@ -32,7 +32,7 @@ public class FileService {
         return fileRepository.getAll();
     }
 
-    public void deleteFile(Integer id) {
+    public void deleteFile(Long id) {
         fileRepository.delete(id);
     }
 }

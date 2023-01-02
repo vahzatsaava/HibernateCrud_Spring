@@ -15,12 +15,11 @@ import java.util.List;
 
 @Component
 public class HibernateUserRepositoryImpl implements UserRepository {
-    private final String FIND_BY_ID_QUERY = "select users.id,user_name,email,first_name,last_name,users.password,users.status from users left join events e on users.id = e.users_id\n" +
+    private final String FIND_BY_ID_QUERY = "select users.id,username,email,first_name,last_name,users.password,users.status from users left join events e on users.id = e.users_id\n" +
             "left join user_roles ur on users.id = ur.user_id where users.id  = ?";
-    private final String FIND_BY_USER_NAME = "select users.id,user_name,email,first_name,last_name,users.password,users.status from users left join events e on users.id = e.users_id\n" +
-            "left join user_roles ur on users.id = ur.user_id where users.user_name  = ?";
+    private final String FIND_BY_USER_NAME = "select users.id,username,email,first_name,last_name,users.password,users.status from users left join events e on users.id = e.users_id\n" +
+            "left join user_roles ur on users.id = ur.user_id where users.username  = ?";
     private final String GET_ALL_USERS = "select * from users";
-
 
 
     @Override
@@ -43,7 +42,7 @@ public class HibernateUserRepositoryImpl implements UserRepository {
 
     @Override
 
-    public User find(Integer id) {
+    public User find(Long id) {
         try (Session session = HibernateUtils.getSession()) {
             Query query = session.createNativeQuery(FIND_BY_ID_QUERY, User.class);
             query.setParameter(1, id);
@@ -62,7 +61,7 @@ public class HibernateUserRepositoryImpl implements UserRepository {
 
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         try (Session session = HibernateUtils.getSession()) {
             session.getTransaction().begin();
             Query query = session.createQuery("delete User as U where U.id =:id");

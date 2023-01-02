@@ -16,7 +16,7 @@ public class EventService {
         this.eventRepository = eventRepository;
     }
 
-    public Event getOneEvent(Integer id) {
+    public Event getOneEvent(Long id) {
         return eventRepository.find(id);
     }
 
@@ -32,7 +32,7 @@ public class EventService {
         return eventRepository.getAll();
     }
 
-    public void deleteEvent(Integer id) {
+    public void deleteEvent(Long id) {
         eventRepository.delete(id);
     }
 }

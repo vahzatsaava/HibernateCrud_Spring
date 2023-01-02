@@ -4,6 +4,7 @@ import com.example.hibernatecrud_spring.model.File;
 import com.example.hibernatecrud_spring.service.FileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,26 +19,33 @@ public class FileController {
     public FileController(FileService fileService) {
         this.fileService = fileService;
     }
+
     @GetMapping("/{id}")
-    public File find(@PathVariable Integer id) {
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
+    public File find(@PathVariable Long id) {
         return fileService.getOneFile(id);
     }
+
     @GetMapping()
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
     public List<File> getAll() {
         return fileService.getAllFiles();
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public File create(@RequestBody File file) {
         return fileService.save(file);
     }
 
-    @PutMapping
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
     public File update(@RequestBody File file) {
         return fileService.update(file);
     }
+
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id){
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
+    public void delete(@PathVariable Long id) {
         fileService.deleteFile(id);
         log.info("User was deleted ");
     }

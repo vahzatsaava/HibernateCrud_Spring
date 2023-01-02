@@ -1,4 +1,4 @@
-package com.example.hibernatecrud_spring.security.dto;
+package com.example.hibernatecrud_spring.dto;
 
 import lombok.Data;
 
@@ -6,5 +6,4 @@ import lombok.Data;
 public class AuthenticationRequestDto {
     private String username;
     private String password;
-
 }

@@ -18,13 +18,10 @@ import java.sql.Date;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    //    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+    private Long id;
     @CreatedDate
     @Column(name = "created")
     private Date created;
-    //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
-
     @LastModifiedDate
     @Column(name = "updated")
     private Date updated;

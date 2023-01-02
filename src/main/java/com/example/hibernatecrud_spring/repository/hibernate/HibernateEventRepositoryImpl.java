@@ -29,7 +29,7 @@ public class HibernateEventRepositoryImpl implements EventRepository {
     }
 
     @Override
-    public Event find(Integer id) {
+    public Event find(Long id) {
         try (Session session = HibernateUtils.getSession()){
             Query query = session.createQuery("from Event  as E left join fetch E.file left join fetch E.user where E.id = :id");
             query.setParameter("id",id);
@@ -46,7 +46,7 @@ public class HibernateEventRepositoryImpl implements EventRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         try (Session session = HibernateUtils.getSession()) {
             session.getTransaction().begin();
             javax.persistence.Query query = session.createQuery("delete Event as U where U.id = :id");

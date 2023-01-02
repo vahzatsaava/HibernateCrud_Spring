@@ -4,13 +4,14 @@ import com.example.hibernatecrud_spring.model.Event;
 import com.example.hibernatecrud_spring.model.File;
 import com.example.hibernatecrud_spring.service.EventService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/events")
 @Slf4j
+@RequestMapping("/api/v1/events")
 public class EventController {
     private final EventService eventService;
 
@@ -18,25 +19,30 @@ public class EventController {
         this.eventService = eventService;
     }
     @GetMapping("/{id}")
-    public Event find(@PathVariable Integer id) {
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
+    public Event find(@PathVariable Long id) {
         return eventService.getOneEvent(id);
     }
     @GetMapping()
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
     public List<Event> getAll() {
         return eventService.getAllEvents();
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public Event create(@RequestBody Event event) {
         return eventService.save(event);
     }
 
     @PutMapping
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
     public Event update(@RequestBody Event event) {
         return eventService.update(event);
     }
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id){
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
+    public void delete(@PathVariable Long id){
         eventService.deleteEvent(id);
         log.info("User was deleted ");
     }

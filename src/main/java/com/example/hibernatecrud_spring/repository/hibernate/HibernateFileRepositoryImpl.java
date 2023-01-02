@@ -29,7 +29,7 @@ public class HibernateFileRepositoryImpl implements FileRepository {
     }
 
     @Override
-    public File find(Integer id) {
+    public File find(Long id) {
         try (Session session = HibernateUtils.getSession()) {
             return session.get(File.class, id);
         }
@@ -39,13 +39,13 @@ public class HibernateFileRepositoryImpl implements FileRepository {
     @Override
     public List<File> getAll() {
         try (Session session = HibernateUtils.getSession()) {
-            Query query = session.createQuery("from File ");
+            Query query = session.createQuery("from File as F left join fetch F.event");
             return query.getResultList();
         }
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         try (Session session = HibernateUtils.getSession()) {
             session.getTransaction().begin();
             Query query = session.createQuery("delete File as F where F.id =: id");
