@@ -3,7 +3,6 @@ package com.example.hibernatecrud_spring.model;
 import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
@@ -11,7 +10,6 @@ import java.sql.Date;
 
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
 @Entity
 @Table(name = "events")
@@ -45,4 +43,14 @@ public class Event {
         this.file = file;
         this.user = user;
     }
+
+    public Event(Long id, Date created, Date updated, Status status, File file, User user) {
+        this.id = id;
+        this.created = created;
+        this.updated = updated;
+        this.status = status;
+        this.file = file;
+        this.user = user;
+    }
+
 }
