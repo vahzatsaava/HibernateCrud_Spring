@@ -15,8 +15,8 @@
     <description>HibernateCrud_Spring</description>
     <properties>
         <java.version>11</java.version>
-        <org.flywaydb>9.4.0</org.flywaydb>
-        <flyway-mysql>8.2.1</flyway-mysql>
+        <org.flywaydb>9.10.2</org.flywaydb>
+        <flyway-mysql>9.10.2</flyway-mysql>
     </properties>
     <dependencies>
         <dependency>

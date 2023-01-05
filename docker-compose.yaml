@@ -8,7 +8,7 @@ services:
     depends_on:
       - mysqldb
   mysqldb:
-    image: "mysql:5.7"
+    image: "mysql:latest"
     restart: always
     ports:
       - 3307:3306
@@ -16,4 +16,5 @@ services:
       MYSQL_DATABASE: world
       MYSQL_USER: root
       MYSQL_PASSWORD: root1234
+      MYSQL_ROOT_PASSWORD: root1234
 
